@@ -1,0 +1,274 @@
+<head>
+    <link rel="stylesheet" href="./Main.css">
+
+</head>
+<body class="crt">
+    <pre id="house">
+       _[]_         
+ ___[]/____\_[]_    
+/_____|[][]|____\    (
+|[][] |[][]|__[]| ___[]
+|/\   |  /\|  /\||_____\
+|||[]||[]|||[]||||[_]|||
+------------------------
+        <a href="Home.html">house</a>
+    </pre>
+
+
+<pre id="cassette"> 
+     ___________________________________________
+    |  _______________________________________  |
+    | / .-----------------------------------. \ |
+    | | | /\ :                        90 min| | |
+    | | |/--\:....................... NR [ ]| | |
+    | | `-----------------------------------' | |
+    | |      //-\\   |         |   //-\\      | |
+    | |     ||( )||  |_________|  ||( )||     | |
+    | |      \\-//   :....:....:   \\-//      | |
+    | |       _ _ ._  _ _ .__|_ _.._  _       | |
+    | |      (_(_)| |(_(/_|  |_(_||_)(/_      | |
+    | |               low noise   |           | |
+    | `______ ____________________ ____ ______' |
+    |        /    []             []    \        |
+    |       /  ()                   ()  \       |
+    !______/_____________________________\______!</pre>
+
+    
+    <div id="music_list">
+        <audio preload="none" id="audio-player"></audio>
+    </div>
+    
+    <div id="music-info">
+        <p id="title"></p>
+        <p id="artist"></p>
+    </div>
+    
+    <div id="audio-controls">
+        <button id="prev-btn" class="terminal-btn">[⇦]</button>
+        <button id="play-btn" class="terminal-btn">[ Play ]</button>
+        <button id="pause-btn" class="terminal-btn">[ Pause ]</button>
+        <button id="next-btn" class="terminal-btn">[⇨]</button>
+        <button id="stop-btn" class="terminal-btn">[ Stop ]</button>
+    </div>
+    
+    <script>
+        (function() {
+            // Playlist array with objects containing title and artist
+            var files = [
+                { title: "Arabella", artist: "Arctic Monkeys", file: "AM/[SPOTIFY-DOWNLOADER.COM] Arabella.mp3" },
+                { title: "Do I Wanna Know?", artist: "Arctic Monkeys", file: "AM/[SPOTIFY-DOWNLOADER.COM] Do I Wanna Know_.mp3" },
+                { title: "Fireside", artist: "Arctic Monkeys", file: "AM/[SPOTIFY-DOWNLOADER.COM] Fireside.mp3" },
+                { title: "I Wanna Be Yours", artist: "Arctic Monkeys", file: "AM/[SPOTIFY-DOWNLOADER.COM] I Wanna Be Yours.mp3" },
+                { title: "((home movie_ 1994))", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] ((home movie_ 1994)).mp3" },
+    { title: "((home movie_ btx))", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] ((home movie_ btx)).mp3" },
+    { title: "((home movie_ rockets))", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] ((home movie_ rockets)).mp3" },
+    { title: "((home movie_ shoes on))", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] ((home movie_ shoes on)).mp3" },
+    { title: "Domestic Bliss", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] Domestic Bliss.mp3" },
+    { title: "Dreamland", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] Dreamland.mp3" },
+    { title: "Heat Waves", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] Heat Waves.mp3" },
+    { title: "Helium", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] Helium.mp3" },
+    { title: "Hot Sugar", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] Hot Sugar.mp3" },
+    { title: "It’s All So Incredibly Loud", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] It’s All So Incredibly Loud.mp3" },
+    { title: "Melon and the Coconut", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] Melon and the Coconut.mp3" },
+    { title: "Space Ghost Coast To Coast", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] Space Ghost Coast To Coast.mp3" },
+    { title: "Tangerine", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] Tangerine.mp3" },
+    { title: "Tokyo Drifting", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] Tokyo Drifting.mp3" },
+    { title: "Waterfalls Coming Out Your Mouth", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] Waterfalls Coming Out Your Mouth.mp3" },
+    { title: "Your Love (Déjà Vu)", artist: "Glass Animals", file: "Dreamland/[SPOTIFY-DOWNLOADER.COM] Your Love (Déjà Vu).mp3" },
+    { title: "Black Mambo", artist: "Glass Animals", file: "ZABA/[SPOTIFY-DOWNLOADER.COM] Black Mambo.mp3" },
+    { title: "Cocoa Hooves", artist: "Glass Animals", file: "ZABA/[SPOTIFY-DOWNLOADER.COM] Cocoa Hooves.mp3" },
+    { title: "Flip", artist: "Glass Animals", file: "ZABA/[SPOTIFY-DOWNLOADER.COM] Flip.mp3" },
+    { title: "Gooey", artist: "Glass Animals", file: "ZABA/[SPOTIFY-DOWNLOADER.COM] Gooey.mp3" },
+    { title: "Hazey", artist: "Glass Animals", file: "ZABA/[SPOTIFY-DOWNLOADER.COM] Hazey.mp3" },
+    { title: "Intruxx", artist: "Glass Animals", file: "ZABA/[SPOTIFY-DOWNLOADER.COM] Intruxx.mp3" },
+    { title: "JDNT", artist: "Glass Animals", file: "ZABA/[SPOTIFY-DOWNLOADER.COM] JDNT.mp3" },
+    { title: "Pools", artist: "Glass Animals", file: "ZABA/[SPOTIFY-DOWNLOADER.COM] Pools.mp3" },
+    { title: "Toes", artist: "Glass Animals", file: "ZABA/[SPOTIFY-DOWNLOADER.COM] Toes.mp3" },
+    { title: "Walla Walla", artist: "Glass Animals", file: "ZABA/[SPOTIFY-DOWNLOADER.COM] Walla Walla.mp3" },
+    { title: "Wyrd", artist: "Glass Animals", file: "ZABA/[SPOTIFY-DOWNLOADER.COM] Wyrd.mp3" },
+                { title: "4 am", artist: "Girl in Red", file: "Beginnings/[SPOTIFY-DOWNLOADER.COM] 4am.mp3" },
+                { title: "bad idea!", artist: "Girl in Red", file: "Beginnings/[SPOTIFY-DOWNLOADER.COM] bad idea!.mp3" },
+                { title: "dead girl in the pool.", artist: "Girl in Red", file: "Beginnings/[SPOTIFY-DOWNLOADER.COM] dead girl in the pool..mp3" },
+                { title: "girls", artist: "Girl in Red", file: "Beginnings/[SPOTIFY-DOWNLOADER.COM] girls.mp3" },
+                { title: "i need to be alone", artist: "Girl in Red", file: "Beginnings/[SPOTIFY-DOWNLOADER.COM] i need to be alone..mp3" },
+                { title: "i wanna be your girlfriend", artist: "Girl in Red", file: "Beginnings/[SPOTIFY-DOWNLOADER.COM] i wanna be your girlfriend.mp3" },
+                { title: "i'll die anyway", artist: "Girl in Red", file: "Beginnings/[SPOTIFY-DOWNLOADER.COM] i'll die anyway..mp3" },
+                { title: "say anything", artist: "Girl in Red", file: "Beginnings/[SPOTIFY-DOWNLOADER.COM] say anything.mp3" },
+                { title: "summer depression", artist: "Girl in Red", file: "Beginnings/[SPOTIFY-DOWNLOADER.COM] summer depression.mp3" },
+                { title: "watch you sleep", artist: "Girl in Red", file: "Beginnings/[SPOTIFY-DOWNLOADER.COM] watch you sleep..mp3" },
+                { title: "B.I.T.M.", artist: "SIAMES", file: "Bounce into the music/B.I.T.M..mp3" },
+                { title: "As You Get High", artist: "SIAMES", file: "Bounce into the music/As You Get High.mp3" },
+                { title: "Firestorm", artist: "SIAMES", file: "Bounce into the music/Firestorm.mp3" },
+                { title: "Gimme Some Sweet", artist: "SIAMES", file: "Bounce into the music/Gimme Some Sweet.mp3" },
+                { title: "Mr. Fear", artist: "SIAMES", file: "Bounce into the music/Mr. Fear.mp3" },
+                { title: "No Honey", artist: "SIAMES", file: "Bounce into the music/No Honey.mp3" },
+                { title: "Stronger", artist: "SIAMES", file: "Bounce into the music/Stronger.mp3" },
+                { title: "The Cave", artist: "SIAMES", file: "Bounce into the music/The Cave.mp3" },
+                { title: "The Wolf", artist: "SIAMES", file: "Bounce into the music/The Wolf.mp3" },
+                { title: "Used to Be", artist: "SIAMES", file: "Bounce into the music/Used to Be.mp3" },
+                { title: "All This And Heaven Too", artist: "Florence n' M.", file: "Cerimonials/[SPOTIFY-DOWNLOADER.COM] All This And Heaven Too.mp3" },
+                { title: "Breaking Down", artist: "Florence n' M.", file: "Cerimonials/[SPOTIFY-DOWNLOADER.COM] Breaking Down.mp3" },
+                { title: "Breath Of Life", artist: "Florence n' M.", file: "Cerimonials/[SPOTIFY-DOWNLOADER.COM] Breath Of Life.mp3" },
+                { title: "Heartlines", artist: "Florence n' M.", file: "Cerimonials/[SPOTIFY-DOWNLOADER.COM] Heartlines.mp3" },
+                { title: "Leave My Body", artist: "Florence n' M.", file: "Cerimonials/[SPOTIFY-DOWNLOADER.COM] Leave My Body.mp3" },
+                { title: "Lover To Lover", artist: "Florence n' M.", file: "Cerimonials/[SPOTIFY-DOWNLOADER.COM] Lover To Lover.mp3" },
+                { title: "Never Let Me Go", artist: "Florence n' M.", file: "Cerimonials/[SPOTIFY-DOWNLOADER.COM] Never Let Me Go.mp3" },
+                { title: "No Light, No Light", artist: "Florence n' M.", file: "Cerimonials/[SPOTIFY-DOWNLOADER.COM] No Light, No Light.mp3" },
+                { title: "Only If For A Night", artist: "Florence n' M.", file: "Cerimonials/[SPOTIFY-DOWNLOADER.COM] Only If For A Night.mp3" },
+                { title: "Seven Devils", artist: "Florence n' M.", file: "Cerimonials/[SPOTIFY-DOWNLOADER.COM] Seven Devils.mp3" },
+                { title: "Shake It Out", artist: "Florence n' M.", file: "Cerimonials/[SPOTIFY-DOWNLOADER.COM] Shake It Out.mp3" },
+                { title: "Spectrum (Say My Name) - Calvin Harris Remix", artist: "Florence n' M.", file: "Cerimonials/[SPOTIFY-DOWNLOADER.COM] Spectrum (Say My Name) - Calvin Harris Remix.mp3" },
+                { title: "Spectrum", artist: "Florence n' M.", file: "Cerimonials/[SPOTIFY-DOWNLOADER.COM] Spectrum.mp3" },
+                { title: "Take Care - BBC Live At Maida Vale", artist: "Florence n' M.", file: "Cerimonials/[SPOTIFY-DOWNLOADER.COM] Take Care - BBC Live At Maida Vale.mp3" },
+                { title: "What The Water Gave Me", artist: "Florence n' M.", file: "Cerimonials/[SPOTIFY-DOWNLOADER.COM] What The Water Gave Me.mp3" },
+                { title: "'Cause I'm A Man", artist: "Tame Impala", file: "Currents/[SPOTIFY-DOWNLOADER.COM] 'Cause I'm A Man.mp3" },
+                { title: "Disciples", artist: "Tame Impala", file: "Currents/[SPOTIFY-DOWNLOADER.COM] Disciples.mp3" },
+                { title: "Eventually", artist: "Tame Impala", file: "Currents/[SPOTIFY-DOWNLOADER.COM] Eventually.mp3" },
+                { title: "Gossip", artist: "Tame Impala", file: "Currents/[SPOTIFY-DOWNLOADER.COM] Gossip.mp3" },
+                { title: "Let It Happen", artist: "Tame Impala", file: "Currents/[SPOTIFY-DOWNLOADER.COM] Let It Happen.mp3" },
+                { title: "Nangs", artist: "Tame Impala", file: "Currents/[SPOTIFY-DOWNLOADER.COM] Nangs.mp3" },
+                { title: "New Person, Same Old Mistakes", artist: "Tame Impala", file: "Currents/[SPOTIFY-DOWNLOADER.COM] New Person, Same Old Mistakes.mp3" },
+                { title: "Past Life", artist: "Tame Impala", file: "Currents/[SPOTIFY-DOWNLOADER.COM] Past Life.mp3" },
+                { title: "Reality In Motion", artist: "Tame Impala", file: "Currents/[SPOTIFY-DOWNLOADER.COM] Reality In Motion.mp3" },
+                { title: "The Less I Know The Better", artist: "Tame Impala", file: "Currents/[SPOTIFY-DOWNLOADER.COM] The Less I Know The Better.mp3" },
+                { title: "The Moment", artist: "Tame Impala", file: "Currents/[SPOTIFY-DOWNLOADER.COM] The Moment.mp3" },
+                { title: "Yes I'm Changing", artist: "Tame Impala", file: "Currents/[SPOTIFY-DOWNLOADER.COM] Yes I'm Changing.mp3" }
+            ];
+    
+            // Current index of the files array
+            var currentIndex = 0;
+    
+            // Get the audio element
+            var music_player = document.querySelector("#music_list audio");
+    
+            // Get the elements to display title and artist
+            var titleElement = document.getElementById("title");
+            var artistElement = document.getElementById("artist");
+    
+            // Function to shuffle array randomly
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+    
+            // Shuffle the playlist initially
+            shuffle(files);
+    
+            // Function for moving to next audio file
+            function next() {
+                // Increment the current index
+                currentIndex++;
+    
+                // If reached end of playlist, shuffle again
+                if (currentIndex >= files.length) {
+                    shuffle(files);
+                    currentIndex = 0;
+                }
+    
+                // Change the audio element source
+                music_player.src = files[currentIndex].file;
+    
+                // Update title and artist on the screen
+                titleElement.textContent = files[currentIndex].title;
+                artistElement.textContent = files[currentIndex].artist;
+    
+                // Start playing the audio
+                music_player.play();
+            }
+    
+            // Function for moving to previous audio file
+            function prev() {
+                // Decrement the current index
+                currentIndex--;
+    
+                // If reached beginning of playlist, shuffle again
+                if (currentIndex < 0) {
+                    shuffle(files);
+                    currentIndex = files.length - 1;
+                }
+    
+                // Change the audio element source
+                music_player.src = files[currentIndex].file;
+    
+                // Update title and artist on the screen
+                titleElement.textContent = files[currentIndex].title;
+                artistElement.textContent = files[currentIndex].artist;
+    
+                // Start playing the audio
+                music_player.play();
+            }
+    
+            // Check if the player is selected
+            if (music_player === null) {
+                throw "Playlist Player does not exist ...";
+            }
+    
+            document.getElementById('play-btn').addEventListener('click', function() {
+                // Start playing audio if not already playing
+                if (music_player.paused) {
+                    next(); // Play the next song
+                }
+            });
+    
+            document.getElementById('pause-btn').addEventListener('click', function() {
+                music_player.pause();
+            });
+    
+            document.getElementById('stop-btn').addEventListener('click', function() {
+                music_player.pause();
+                music_player.currentTime = 0;
+            });
+    
+            document.getElementById('next-btn').addEventListener('click', function() {
+                next(); // Skip to next song
+            });
+    
+            document.getElementById('prev-btn').addEventListener('click', function() {
+                prev(); // Skip to previous song
+            });
+        })();
+    </script>
+    
+    <script>document.addEventListener("DOMContentLoaded", function() {
+        const elements = document.querySelectorAll('pre, #hometalk, #game-output, #user-input, #house, #cassette');
+        let delay = 0;
+    
+        elements.forEach((element) => {
+            const content = element.innerHTML; // Store original content
+            element.innerHTML = ''; // Clear content to apply typing effect
+    
+            // Preserve original styles if they were set via CSS
+            const computedStyles = window.getComputedStyle(element);
+            element.style.width = computedStyles.width;
+            element.style.height = computedStyles.height;
+    
+            let charIndex = 0;
+    
+            const typingEffect = () => {
+                if (charIndex < content.length) {
+                    const currentChar = content[charIndex];
+    
+                    // Check if currentChar is part of an HTML tag
+                    if (currentChar === '<') {
+                        const endIndex = content.indexOf('>', charIndex);
+                        element.innerHTML += content.substring(charIndex, endIndex + 1);
+                        charIndex = endIndex + 1;
+                    } else {
+                        element.innerHTML += currentChar;
+                        charIndex++;
+                    }
+    
+                    setTimeout(typingEffect, 10); // Adjust the delay value for typing speed
+                } else {
+                    // Ensure final content is complete
+                    element.innerHTML = content;
+                }
+            };
+    
+            setTimeout(typingEffect, delay);
+            delay += content.replace(/<[^>]*>/g, '').length * 0; // Adjust the overall delay for each element based on its content length excluding HTML tags
+        });
+    });</script>

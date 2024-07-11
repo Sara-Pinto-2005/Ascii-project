@@ -1,0 +1,104 @@
+<head>
+    <link rel="stylesheet" href="./Main.css">
+
+</head>
+<body class="crt">
+    <pre id="house">
+       _[]_         
+ ___[]/____\_[]_    
+/_____|[][]|____\    (
+|[][] |[][]|__[]| ___[]
+|/\   |  /\|  /\||_____\
+|||[]||[]|||[]||||[_]|||
+------------------------
+        <a href="Home.html">house</a>
+    </pre>
+
+    <pre id="radio">
+  .============.|       
+.-;____________;|.       
+| [_________I__] |       
+|  """"" (_) (_) |     
+| .=====..=====. |
+| |:::::||:::::| |
+| '=====''=====' |
+'----------------'
+      <a href="Radio.html">radio</a>
+</pre>
+
+
+<pre id="zombie">
+                            |____  '.    ____     _ _____     FJ___    LJ    ____
+                              `--7 .'   F __ J   J '_  _ `,  J  __ J        F __ J
+                               .'.'.'  | |--| |  | |_||_| |  | |--| |  FJ  | _____J
+                             .' (_(__  F L__J J  F L LJ J J  F L__J J J  L F L___--.
+                            J________LJ\______/FJ__L LJ J__LJ__,____/LJ__LJ\______/F
+                            |________| J______F |__L LJ J__|J__,____F |__| J______F
+
+             /.\      _ ___      ____      ____      ___ _  L J   _    _    _ ___      ____      ____
+            //_\\    J '__ J    F __ J    F ___J.   F __` L F J  J |  | L  J '__ J    F ___J    F __ J 
+           / ___ \   | |--| |  | |--| |  | |---LJ  | |--| | J  L | |  | |  | |--| |  | '----_  | _____J 
+          / L___J \  F L__J J  F L__J J  F L___--. F L__J J J  L F L__J J  F L__J J  )-____  L F L___--.
+         J__L   J__LJ  _____/LJ\______/FJ\______/FJ\____,__LJ__L )-____  LJ  _____/LJ\______/FJ\______/F
+         |__L   J__||_J_____F  J______F  J______F  J____,__F|__|J\______/F|_J_____F  J______F  J______F
+                    L_J                                          J______F L_J                            
+
+</pre><pre id="todo">
+
+    What you need:
+    <ul class="clicker" tabindex="1">
+        <li>wake up you need to make money</li>
+        <li>Meet George</li>
+        <li>Buy eggs</li>
+        <li>Read a book</li>
+        <li>Organize office</li>
+        <li>wake up you need to make money</li>
+        <li>Meet George</li>
+        <li>Buy eggs</li>
+        <li>Read a book</li>
+        <li>Organize office</li>
+      </ul>              
+
+</pre>
+
+
+</body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const elements = document.querySelectorAll('pre, .index, .clicker');
+        let delay = 0;
+    
+        elements.forEach((element) => {
+            const content = element.innerHTML;
+            element.innerHTML = '';
+            element.style.width = element.offsetWidth + 'px'; // Preserve width
+            element.style.height = element.offsetHeight + 'px'; // Preserve height
+    
+            let charIndex = 0;
+    
+            const typingEffect = () => {
+                if (charIndex < content.length) {
+                    const currentChar = content[charIndex];
+    
+                    // Check if currentChar is part of an HTML tag
+                    if (currentChar === '<') {
+                        const endIndex = content.indexOf('>', charIndex);
+                        element.innerHTML += content.substring(charIndex, endIndex + 1);
+                        charIndex = endIndex + 1;
+                    } else {
+                        element.innerHTML += currentChar;
+                        charIndex++;
+                    }
+    
+                    setTimeout(typingEffect, 10); // Adjust the delay value for typing speed
+                } else {
+                    element.innerHTML = content; // Ensure final content is complete
+                }
+            };
+    
+            setTimeout(typingEffect, delay);
+            delay += content.replace(/<[^>]*>/g, '').length * 0; // Adjust the overall delay for each element based on its content length excluding HTML tags
+        });
+    });
+    </script>
