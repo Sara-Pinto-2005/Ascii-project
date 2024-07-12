@@ -30,23 +30,22 @@ animation: type 4s steps(60, end) forwards;
 
 
 
-
-
-
-
-
-
-
-
 * a{
     text-decoration: none;
 }
 * a:hover{
     color: gray;
 }
+body {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
+
 #GoBack {
-    position:absolute;
-    left: 250px;
+  position: absolute;
+  left: 20%;
 }
 @keyframes flicker {
     0% {
@@ -179,7 +178,8 @@ animation: type 4s steps(60, end) forwards;
       text-shadow: 2.6208764473832513px 0 1px rgba(0,30,255,0.5), -2.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px;
     }
   }
-  .crt::after {
+
+.crt::after {
     content: " ";
     display: block;
     position: fixed;
@@ -192,8 +192,9 @@ animation: type 4s steps(60, end) forwards;
     z-index: 2;
     pointer-events: none;
     animation: flicker 0.15s infinite;
-  }
-  .crt::before {
+}
+
+.crt::before {
     content: " ";
     display: block;
     position: fixed;
@@ -208,140 +209,136 @@ animation: type 4s steps(60, end) forwards;
     z-index: 2;
     background-size: 100% 2px, 3px 100%, cover;
     pointer-events: none;
-  }
+}
   .crt {
     animation: textShadow 1.6s infinite;
 }
 
 #zombie {
-    position: absolute;
-top: 30px ;
-left: 19%;
-background: none;
-z-index: 1;
+  position: absolute;
+  top: 30px;
+  left: 15%;
+  background: none;
+  z-index: 1;
 }
 
 #cassette {
   position: absolute;
-top: 200px ;
-left: 450px;
-background: none;
-z-index: 1;
+  top: 200px;
+  left: 37.5%;
+  background: none;
+  z-index: 1;
 }
+
 #todo {
-    position: absolute;
-top: 330px ;
-left: 19%;
-background: none;
-width: 80%;
-z-index: 1;
+  position: absolute;
+  top: 330px;
+  left: 15%;
+  background: none;
+  width: 70%;
+  z-index: 1;
 }
 
 #door {
-position: absolute;
-top: 30px ;
-left: 750px;
-background: none;
-padding: 0;
-font-size: small;
-z-index: 1;
+  position: absolute;
+  top: 30px;
+  left: 62.5%;
+  background: none;
+  padding: 0;
+  font-size: small;
+  z-index: 1;
 }
 
 #hometalk {
-    position: absolute;
-    top: 440px ;
-    left: 10%;
-    background: none;
-    padding: 0;
-    z-index: 1;
-    }
+  position: absolute;
+  top: 440px;
+  left: 10%;
+  background: none;
+  padding: 0;
+  z-index: 1;
+}
 
 #house {
-    position: absolute;
-    top: 10px ;
-left: 50px;
-z-index: 1;
+  position: absolute;
+  top: 10px;
+  left: 5%;
+  z-index: 1;
 }
 
 #radio {
-    position: absolute;
-    top: 10px ;
-left: 1100px;
-z-index: 1;
+  position: absolute;
+  top: 10px;
+  left: 81.67%;
+  z-index: 1;
 }
 
 .clicker {
-    outline:none;
-    display: inline;
-    cursor:pointer;
-    color:rgba(18, 16, 16, 0)
-    z-index: 1;
-    ;
-    }
-    
-
-    
-    .clicker {
-        list-style-type: none;
-        padding: 0;
-        z-index: 1;
-    }
-
-    .clicker li {
-        cursor: pointer;
-        width: 80%;
-        z-index: 1;
-    }
-
-    .clicker li.checked {
-        color: gray;
-        z-index: 1;
-    }
-
-
-    .clicker li::before {
-  content: '[ ] - '
-  }
-
-.index {
-
+  outline: none;
+  display: inline;
+  cursor: pointer;
+  color: rgba(18, 16, 16, 0);
+  z-index: 1;
 }
 
+.clicker {
+  list-style-type: none;
+  padding: 0;
+  z-index: 1;
+}
+
+.clicker li {
+  cursor: pointer;
+  width: 80%;
+  z-index: 1;
+}
+
+.clicker li.checked {
+  color: gray;
+  z-index: 1;
+}
+
+.clicker li::before {
+  content: '[ ] - ';
+}
+
+.index {
+}
 
 #game-container {
-    width: 80%;
-    max-width: 600px;
-    padding: 20px;
-    position: absolute;
-    top: 100px;
-    left: 100px;
-    overflow: hidden
+  width: 80%;
+  max-width: 600px;
+  padding: 20px;
+  position: absolute;
+  top: 60px;
+  left: 16.67%;
+  overflow: hidden;
 }
 
 #game-output {
-    height: 300px;
-    overflow-y: auto;
-    margin-bottom: 10px;
-    white-space: pre-wrap;
-    overflow:hidden;
-    z-index: 1;
+  height: 300px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  overflow: hidden;
+  z-index: 1;
 }
 
 #user-input {
-
-    width: 60%;
-    padding: 10px;
-    border: 1px solid rgb(206, 152, 35);
-    color: rgb(148, 148, 148);
-    font-family: inherit;
-    font-size: 16px;
-    left: 25px;
-    top:250px ;
-    z-index: 1;
+  width: 60%;
+  padding: 10px;
+  border: 1px solid rgb(206, 152, 35);
+  color: rgb(148, 148, 148);
+  font-family: inherit;
+  font-size: 16px;
+  position: absolute;
+  left: 2%;
+  top: 380px;
+  z-index: 1;
 }
+
 audio {
   position: absolute;
-  left: 500px;
+  left: 41.67%;
   top: 500px;
   z-index: 1;
   background-color: rgba(18, 16, 16, 0.1);
@@ -357,14 +354,14 @@ audio:hover {
 
 #audio-controls {
   position: absolute;
-  left: 60px;
+  left: 7.5%;
   top: 500px;
   z-index: 1;
   font-family: Inconsolata, monospace;
   width: fit-content;
   color: rgb(206, 152, 35);
-  
 }
+
 .terminal-btn {
   background-color: rgba(18, 16, 16, 0);
   border: none;
@@ -373,40 +370,47 @@ audio:hover {
 }
 
 #play-btn {
-position: absolute;
-left: 500px;
-top: 0px;
+  position: absolute;
+  left: 500px;
+  top: 0;
 }
+
 #pause-btn {
   position: absolute;
   left: 550px;
-  top: 0px;
+  top: 0;
 }
+
 #stop-btn {
   position: absolute;
   left: 610px;
-  top: 0px;
+  top: 0;
 }
+
 #prev-btn {
   position: absolute;
-  left: 420px;
+  left: 400px;
   top: -4px;
   font-size: larger;
 }
+
 #next-btn {
   position: absolute;
   left: 700px;
   top: -4px;
   font-size: larger;
 }
+
 #play-btn:hover {
   background-color: rgba(18, 16, 16, 0);
   color: rgb(148, 148, 148);
 }
+
 #pause-btn:hover {
   background-color: rgba(18, 16, 16, 0);
   color: rgb(148, 148, 148);
 }
+
 #stop-btn:hover {
   background-color: rgba(18, 16, 16, 0);
   color: rgb(148, 148, 148);
@@ -424,19 +428,16 @@ top: 0px;
 
 #music-info {
   text-align: center;
-  margin-top: -58px; /* Adjust as needed */
+  margin-top: -88px; /* Adjust as needed */
   margin-left: 60px;
 }
 
 #title {
   font-size: 16px;
-  font-weight: ;
-  margin-left: -90px;
 }
 
 #artist {
   font-size: 18px;
-  margin-top: 96px;
-  color: rgb(148, 148, 148);;
-  margin-left: -45px;
+  margin-top: 154px;
+  color: rgb(148, 148, 148);
 }
