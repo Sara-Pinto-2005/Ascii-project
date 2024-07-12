@@ -92,4 +92,4 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(typingEffect, delay);
         delay += content.replace(/<[^>]*>/g, '').length * 0; // Adjust the overall delay for each element based on its content length excluding HTML tags
     });
-});
+}); 
